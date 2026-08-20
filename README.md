@@ -1,25 +1,28 @@
 # Tipped V1
 
-Combined prototype for the two TIP quick-hit products.
+Combined shell for the two TIP quick-hit products.
 
 - **TIP7** = Quick Body: Stretch + Strength
 - **TIP9** = GOLF-HITT / Quick Practice: Swing + Skill
 
-The header acts as the product switch. Selecting TIP7 or TIP9 updates the page in place rather than sending the golfer to a separate site/app.
+## Current architecture
 
-## Design direction
+Tipped is now the single product URL and navigation shell. The header switches between the **live TIP7** and **live TIP9** engines in place.
 
-TIP7 is the reference visual language for the family: dark green shell, cream text, lime accent, rounded outlined panels, compact uppercase labels, and a strong lime primary CTA.
+This deliberately avoids duplicating two growing applications into one fragile JavaScript file. TIP7 and TIP9 remain independently testable in their source repositories, while Tipped presents them as one product family.
 
-TIP9 keeps a lighter, faster practice flow but now uses the same visual grammar so the products feel related without behaving identically.
+### TIP7
 
-## Current prototype scope
+Loads the current working TIP7 Level 1 engine, including onboarding, calendar/streak behavior, PREPARE/WORK timer, exercise instructions, controls, completion and prototype reset.
 
-The combined prototype proves:
+### TIP9 / GOLF-HITT
 
-- TIP7/TIP9 header navigation.
-- TIP7 welcome / Foundation concept in the combined shell.
-- TIP9 GOLF-HITT welcome, location choice, recommendation, another recommendation, and three-block nine-ball practice.
-- Shared design language between the products.
+Loads the current working TIP9 v0.2 engine, including location choice, recommendation-led `Give me 9`, the expanded practice library, clearer What To Do / Success language, adaptive Swing blocks, scored Skill blocks, levels and prototype reset.
 
-The full standalone TIP7 timer/streak engine and full TIP9 26-practice library are not yet copied into this combined shell. This first version is intentionally testing whether the integrated navigation and family presentation make sense before combining all application logic.
+## Shared design language
+
+Tipped uses TIP7 as the visual reference: dark green, cream type, lime accent, rounded outlined panels and lime primary actions. Where browser same-origin rules permit, the shell applies this same presentation layer to TIP9 so the engines feel like siblings while retaining different workflows.
+
+## Product behavior
+
+Only one engine is visible at a time. TIP7 and TIP9 no longer append sections underneath each other in the combined product. Switching the header tab replaces the visible application view while preserving the independent local progress of each engine.
